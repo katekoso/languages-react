@@ -1,23 +1,15 @@
 import styles from '../styles/list.module.scss';
+import ReadWordField from './ReadWordField';
+import RedactWordForm from './RedactWordForm';
 
 function List(props) {
+    const {saved, number, word, translation, transcription, topic} = props;
     return (
         <>
-        <h3>Your words</h3>
-        <form className="styles.form">
-            <input type="text" placeholder="word"
-            className="styles.form__text"
-            />
-            <input type="text" placeholder="translation"
-            className="styles.form__text"
-            />
-             <input type="text" placeholder="transcription"
-            className="styles.form__text"
-            />
-             <input type="text" placeholder="topic"
-            className="styles.form__text"
-            />
-        </form>
+        {saved
+          ? <ReadWordField number={number} word={word} translation={translation} transcription={transcription} topic={topic}/>
+          : <RedactWordForm number={number} word={word} translation={translation} transcription={transcription} topic={topic}/>
+        }
         </>
     );
 }
