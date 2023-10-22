@@ -2,4 +2,7 @@
 
 .color {
   background-color: $color_pink;
+  &:hover {
+    background-color: $color_pink_dark;
+  }
 }

@@ -1,12 +1,11 @@
-import styles from './assets/styles/App.css';
+import './assets/styles/App.css';
 import List from './assets/components/List';
 
 function App() {
   return (
-    <>
-    <h3>Ваши слова</h3>
+    <div className="listContainer">
     <List></List>
-    </>
+    </div>
   );
 }
 

@@ -2,4 +2,7 @@
 
 .color {
   background-color: $color_green;
+  &:hover {
+    background-color: $color_green_dark;
+  }
 }

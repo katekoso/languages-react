@@ -24,22 +24,27 @@ function List() {
     //const {saved} = props;
     return (
         <table className={styles.list}>
+          <caption>Ваши слова</caption>
+          <thead>
           <tr className={styles.row}>
-            <th className={styles.cell}>#</th>
+            <th className={styles.cell + " " + styles.first}>#</th>
             <th className={styles.cell}>word</th>
             <th className={styles.cell}>translation</th>
             <th className={styles.cell}>transcription</th>
             <th className={styles.cell}>topic</th>
-            <th></th>
+            <th className={styles.buttons}></th>
           </tr>
+          </thead>
+          <tbody>
       {
         data.map((word) =>
-            {word.saved
-                ? <ReadWordField number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic}/>
-                : <RedactWordForm number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic}/>
+            { return word.saved
+                ? <ReadWordField number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic} key={word.number}/>
+                : <RedactWordForm number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic} key={word.number}/>
             }
         )
        }
+       </tbody>
         </table>
     );
 }

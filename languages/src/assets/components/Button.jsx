@@ -4,7 +4,9 @@ function Button(props) {
     const {buttonImg, theme} = props;
     return (
         <button className={theme.color + ' ' + styles.button}>
-            <object type="image/svg+xml" data={buttonImg}></object>
+            <object type="image/svg+xml" data={buttonImg} className={styles.buttonImg}>
+                <img src={buttonImg} alt=""/>
+            </object>
         </button>
     );
 }

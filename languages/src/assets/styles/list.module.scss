@@ -1,18 +1,71 @@
 @import "./variables.scss";
 
-.row {
-  border: 1px solid grey;
-  .cell {
-    border: 1px solid rgb(204, 204, 204);
+th,
+td {
+  border: 1px solid rgb(204, 204, 204);
+  padding: 8px;
+}
+
+thead {
+  background-color: $color_pink_dark;
+  color: $color_pink_light;
+  font-size: 1.3rem;
+}
+
+.cell:not(.first) {
+  width: 20%;
+  //text-align: center;
+  height: 30px;
+}
+
+.list {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: $color_pink_light;
+  color: $color_brown;
+  font-family: $font_regular;
+  font-size: 1.1rem;
+  caption {
+    text-align: center;
+    font-size: 2rem;
+    padding: 5px;
+    font-weight: 700;
   }
-  .buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: end;
-    .button {
-      width: 2%;
-      height: 20px;
+  .row {
+    .cell {
+      &__input {
+        box-sizing: border-box;
+        width: 100%;
+        border: 2px solid $color_brown;
+        border-radius: 5px;
+        color: $color_brown;
+        outline: none;
+        padding: 6px;
+        font-family: $font_regular;
+        font-size: 1.1rem;
+        &:hover {
+          border: 2px solid $color_pink;
+        }
+        &:focus {
+          border: 2px solid $color_pink_dark;
+        }
+      }
+    }
+    .buttons {
+      width: 8%;
+      .button {
+        border: none;
+        padding: 2%;
+        margin: 0 4%;
+        width: 2rem;
+        height: 30px;
+        border-radius: 5px;
+        .buttonImg {
+          box-sizing: border-box;
+          margin-top: 4px;
+          width: 70%;
+        }
+      }
     }
   }
 }

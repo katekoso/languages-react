@@ -1,5 +1,8 @@
 @import "./variables.scss";
 
 .color {
-  background-color: rgb(180, 115, 241);
+  background-color: $color_purple;
+  &:hover {
+    background-color: $color_purple_dark;
+  }
 }
