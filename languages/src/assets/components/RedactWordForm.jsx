@@ -8,25 +8,25 @@ import cancel from '../cancel.svg';
 function RedactWordForm(props) {
     const {number, word, translation, transcription, topic} = props;
     return (
-    <form className={styles.form}>
-        <div>{number}</div>
-        <div className={styles.cell + styles.redact}>
+    <tr className={styles.row}>
+        <th>{number}</th>
+        <th className={styles.cell + ' ' + styles.redact}>
             <input className={styles.cell__input} value={word}/>
-        </div>
-        <div className={styles.cell + styles.redact}>
+        </th>
+        <th className={styles.cell + ' ' + styles.redact}>
             <input className={styles.cell__input} value={translation}/>
-        </div>
-        <div className={styles.cell + styles.redact}>
+        </th>
+        <th className={styles.cell + ' ' + styles.redact}>
             <input className={styles.cell__input} value={transcription}/>
-        </div>
-        <div className={styles.cell + styles.redact}>
+        </th>
+        <th className={styles.cell + ' ' + styles.redact}>
             <input className={styles.cell__input} value={topic}/>
-        </div>
-        <div className={styles.buttons}>
+        </th>
+        <th className={styles.buttons}>
                 <Button theme={green} data={save}></Button>
                 <Button theme={red} data={cancel}></Button>
-        </div>
-    </form>
+        </th>
+    </tr>
     );
 }
 

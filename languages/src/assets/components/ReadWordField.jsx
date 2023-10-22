@@ -8,17 +8,17 @@ import del from '../del.svg';
 function ReadWordField(props) {
     const {number, word, translation, transcription, topic} = props;
     return (
-        <div className={styles.row}>
-            <div className={styles.cell}>{number}</div>
-            <div className={styles.cell}>{word}</div>
-            <div className={styles.cell}>{translation}</div>
-            <div className={styles.cell}>{transcription}</div>
-            <div className={styles.cell}>{topic}</div>
-            <div className={styles.buttons}>
+        <tr className={styles.row}>
+            <th className={styles.cell}>{number}</th>
+            <th className={styles.cell}>{word}</th>
+            <th className={styles.cell}>{translation}</th>
+            <th className={styles.cell}>{transcription}</th>
+            <th className={styles.cell}>{topic}</th>
+            <th className={styles.buttons}>
                 <Button theme={purple} data={redact}></Button>
                 <Button theme={red} data={del}></Button>
-            </div>
-        </div>
+            </th>
+        </tr>
     );
 }
 

@@ -2,15 +2,45 @@ import styles from '../styles/list.module.scss';
 import ReadWordField from './ReadWordField';
 import RedactWordForm from './RedactWordForm';
 
-function List(props) {
-    const {saved, number, word, translation, transcription, topic} = props;
+const data = [
+    {
+      number: 1,
+      word: "кот",
+      translation: "cat",
+      transcription: "[kæt]",
+      topic: "animals"
+    },
+    {
+      number: 2,
+      word: "птица",
+      translation: "bird",
+      transcription: "[bɜːd]",
+      topic: "animals",
+      saved: true
+    }
+  ]
+
+function List() {
+    //const {saved} = props;
     return (
-        <>
-        {saved
-          ? <ReadWordField number={number} word={word} translation={translation} transcription={transcription} topic={topic}/>
-          : <RedactWordForm number={number} word={word} translation={translation} transcription={transcription} topic={topic}/>
-        }
-        </>
+        <table className={styles.list}>
+          <tr className={styles.row}>
+            <th className={styles.cell}>#</th>
+            <th className={styles.cell}>word</th>
+            <th className={styles.cell}>translation</th>
+            <th className={styles.cell}>transcription</th>
+            <th className={styles.cell}>topic</th>
+            <th></th>
+          </tr>
+      {
+        data.map((word) =>
+            {word.saved
+                ? <ReadWordField number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic}/>
+                : <RedactWordForm number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic}/>
+            }
+        )
+       }
+        </table>
     );
 }
 
