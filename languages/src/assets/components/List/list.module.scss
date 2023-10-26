@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "../../styles/variables.scss";
 
 th,
 td {
@@ -14,7 +14,6 @@ thead {
 
 .cell:not(.first) {
   width: 20%;
-  //text-align: center;
   height: 30px;
 }
 

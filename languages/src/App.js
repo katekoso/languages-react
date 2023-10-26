@@ -1,5 +1,5 @@
 import './assets/styles/App.css';
-import List from './assets/components/List';
+import List from './assets/components/List/List';
 
 function App() {
   return (

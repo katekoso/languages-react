@@ -1,4 +1,4 @@
-import styles from '../styles/list.module.scss';
+import styles from './list.module.scss';
 
 function Button(props) {
     const {buttonImg, theme} = props;

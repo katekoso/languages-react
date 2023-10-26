@@ -1,9 +1,9 @@
-import styles from '../styles/list.module.scss';
+import styles from './list.module.scss';
 import Button from './Button';
-import purple from '../styles/purple-theme.module.scss';
-import red from '../styles/red-theme.module.scss';
-import redact from '../images/redact.svg';
-import del from '../images/del.svg';
+import purple from '../../styles/themes/purple-theme.module.scss';
+import red from '../../styles/themes/red-theme.module.scss';
+import redact from '../../images/redact.svg';
+import del from '../../images/del.svg';
 
 function ReadWordField(props) {
     const {number, word, translation, transcription, topic} = props;

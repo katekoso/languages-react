@@ -1,4 +1,4 @@
-import styles from '../styles/list.module.scss';
+import styles from './list.module.scss';
 import ReadWordField from './ReadWordField';
 import RedactWordForm from './RedactWordForm';
 

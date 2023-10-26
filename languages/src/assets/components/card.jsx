@@ -1,1 +1,0 @@
-import styles from '../styles/card.module.scss';
