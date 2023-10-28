@@ -1,27 +1,8 @@
 import styles from './list.module.scss';
 import ReadWordField from './ReadWordField';
-import RedactWordForm from './RedactWordForm';
-
-const data = [
-    {
-      number: 1,
-      word: "кот",
-      translation: "cat",
-      transcription: "[kæt]",
-      topic: "animals"
-    },
-    {
-      number: 2,
-      word: "птица",
-      translation: "bird",
-      transcription: "[bɜːd]",
-      topic: "animals",
-      saved: true
-    }
-  ]
+const data = require('../data.json');
 
 function List() {
-    //const {saved} = props;
     return (
         <table className={styles.list}>
           <caption>Ваши слова</caption>
@@ -38,9 +19,8 @@ function List() {
           <tbody>
       {
         data.map((word) =>
-            { return word.saved
-                ? <ReadWordField number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic} key={word.number}/>
-                : <RedactWordForm number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic} key={word.number}/>
+            { 
+                return <ReadWordField number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic} key={word.number}/>
             }
         )
        }
