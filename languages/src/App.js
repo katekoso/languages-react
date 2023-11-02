@@ -8,7 +8,7 @@ function App() {
     <>
     {
       data.map((word) =>
-          <Card word={word.word} translation={word.translation} transcription={word.transcription} key={word.word}/>
+          <Card english={word.english} russian={word.russian} transcription={word.transcription} key={word.id}/>
       )
     }
     <div className="listContainer">

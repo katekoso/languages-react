@@ -20,7 +20,7 @@ function List() {
       {
         data.map((word) =>
             { 
-                return <ReadWordField number={word.number} word={word.word} translation={word.translation} transcription={word.transcription} topic={word.topic} key={word.number}/>
+                return <ReadWordField id={word.id} english={word.english} russian={word.russian} transcription={word.transcription} tags={word.tags} key={word.id}/>
             }
         )
        }

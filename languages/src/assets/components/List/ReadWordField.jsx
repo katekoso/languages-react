@@ -8,7 +8,7 @@ import del from '../../images/del.svg';
 import RedactWordForm from './RedactWordForm';
 
 function ReadWordField(props) {
-    const {number, word, translation, transcription, topic} = props;
+    const {id, english, russian, transcription, tags} = props;
     let [redacted, setRedacted] = useState(false);
 
     const handleClick = () => {
@@ -19,14 +19,14 @@ function ReadWordField(props) {
         <>
         {
             redacted 
-            ? <RedactWordForm number={number} word={word} translation={translation} transcription={transcription} topic={topic} key={number}/>
+            ? <RedactWordForm id={id} english={english} russian={russian} transcription={transcription} tags={tags} key={id}/>
             : <>
             <tr className={styles.row}>
-            <th className={styles.cell  + " " + styles.first}>{number}</th>
-            <td className={styles.cell}>{word}</td>
-            <td className={styles.cell}>{translation}</td>
+            <th className={styles.cell  + " " + styles.first}>{id}</th>
+            <td className={styles.cell}>{english}</td>
+            <td className={styles.cell}>{russian}</td>
             <td className={styles.cell}>{transcription}</td>
-            <td className={styles.cell}>{topic}</td>
+            <td className={styles.cell}>{tags}</td>
             <td className={styles.buttons}>
                 <Button theme={purple} buttonImg={redact} onClick={handleClick}></Button>
                 <Button theme={red} buttonImg={del} ></Button>

@@ -8,11 +8,11 @@ import cancel from '../../images/cancel.svg';
 import ReadWordField from './ReadWordField';
 
 function RedactWordForm(props) {
-    const {number, word, translation, transcription, topic} = props;
-    const [valueWord, setValueWord] = useState(word);
-    const [valueTranslation, setValueTranslation] = useState(translation);
+    const {id, english, russian, transcription, tags} = props;
+    const [valueWord, setValueWord] = useState(english);
+    const [valueTranslation, setValueTranslation] = useState(russian);
     const [valueTranscription, setValueTranscription] = useState(transcription);
-    const [valueTopic, setValueTopic] = useState(topic);
+    const [valueTopic, setValueTopic] = useState(tags);
     let [redacted, setRedacted] = useState(true);
 
     const handleClick = () => {
@@ -24,7 +24,7 @@ function RedactWordForm(props) {
         {
             redacted 
             ?  <tr className={styles.row}>
-            <th className={styles.cell + " " + styles.first}>{number}</th>
+            <th className={styles.cell + " " + styles.first}>{id}</th>
             <td className={styles.cell}>
                 <input className={styles.cell__input} value={valueWord} onChange={event => setValueWord(event.target.valueWord)}/>
             </td>
@@ -42,7 +42,7 @@ function RedactWordForm(props) {
                     <Button theme={red} buttonImg={cancel} onClick={handleClick}></Button>
             </td>
         </tr>
-        : <ReadWordField number={number} word={word} translation={translation} transcription={transcription} topic={topic} key={number}/>
+        : <ReadWordField id={id} english={english} russian={russian} transcription={transcription} tags={tags} key={id}/>
         }
      </>
     );
