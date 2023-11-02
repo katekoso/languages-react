@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import styles from './slider.module.scss';
-import Card from '../Card/Card';
+import Card from './Card/Card';
 import SliderButton from './SliderButton';
 
 function Slider(props) {
