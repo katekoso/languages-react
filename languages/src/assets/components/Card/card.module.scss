@@ -37,10 +37,37 @@
       font-size: $font_size_small;
       font-weight: 600;
       cursor: pointer;
+      &:hover {
+        background-color: $color_brown;
+      }
     }
     .check__text {
       font-size: $font_size_big;
       cursor: pointer;
     }
+  }
+}
+
+.animate {
+  opacity: 1;
+  animation: slider 1s linear;
+}
+
+@keyframes slider {
+  0% {
+    margin-left: 0;
+    opacity: 1;
+  }
+  25% {
+    margin-left: -100px;
+    opacity: 0;
+  }
+  50% {
+    margin-left: 100px;
+    opacity: 0;
+  }
+  100% {
+    margin-left: 0;
+    opacity: 1;
   }
 }

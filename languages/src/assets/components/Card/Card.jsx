@@ -10,7 +10,7 @@ function Card(props) {
     }
 
     return (
-        <div className={styles.card}>
+        <div className={styles.card + ' ' + styles.animate}>
             <div className={styles.card__main}>
                 <span className={styles.main__word}>{english}</span>
                 <span className={styles.main__transcription}>{transcription}</span>
