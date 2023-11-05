@@ -3,7 +3,7 @@ import prevArrow from '../../images/prevArr.svg';
 import styles from './slider.module.scss';
 
 function SliderButton(props) {
-    const { direction, moveSlide } = props;
+    const { direction, moveSlide} = props;
     return (
       <button
         onClick={moveSlide}
