@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState} from 'react';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import styles from './slider.module.scss';
 import Card from './Card/Card';
@@ -6,14 +6,8 @@ import SliderButton from './SliderButton';
 
 function Slider(props) {
     const { words, firstWordIndex } = props;
-    const [toggle, setToggle] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(firstWordIndex);
     //const buttonRef = useRef(null);
-
-
-    const handleClick = () => {
-        setToggle(!toggle);
-    }
 
     const changeIndexPrevious = () => {
         if(selectedIndex !== 0){
@@ -34,34 +28,32 @@ function Slider(props) {
     }
 
     const showPrevious = () => {
-        handleClick();
         changeIndexPrevious();
       }
       
       const showNext = () => {
-        handleClick();
         changeIndexNext();
       }
 
     return (
         <div className={styles.slider}>
             <div className={styles.slider__main}>
-            <SwitchTransition mode="out-in">
-            <CSSTransition 
-            key={toggle}
+        <SliderButton direction={"prev"} moveSlide={showPrevious}/>
+        <SwitchTransition mode="out-in">
+                <CSSTransition 
+                key={selectedIndex}
             timeout={500}
-            classNames={styles.fade}
-            addEndListener={(node, done) => {
-                node.addEventListener("transitionend", done, false);
+            classNames={{
+                enterActive: styles.myClassEnterActive,
+                enterDone: styles.myClassEnterDone,
+                exitActive: styles.myClassExitActive,
+                exitDone: styles.myClassExitDone
             }}
             >
-                <>
-        <SliderButton direction={"prev"} moveSlide={showPrevious}/>
-           <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} key={words[selectedIndex].id} onClick={handleClick}/>
-        <SliderButton direction={"next"} moveSlide={showNext}/>
-        </>
-        </CSSTransition>
+           <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} key={words[selectedIndex].id}/>
+           </CSSTransition>
       </SwitchTransition>
+        <SliderButton direction={"next"} moveSlide={showNext}/>
         </div>
         <div className={styles.slider__count}>{selectedIndex + 1}/{words.length}</div>
       </div>
