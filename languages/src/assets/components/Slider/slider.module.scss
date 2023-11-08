@@ -46,7 +46,7 @@
 @keyframes fade-in {
   0% {
     opacity: 0;
-    transform: translateX(-150%);
+    transform: translateX(150%);
   }
   100% {
     opacity: 1;
@@ -61,6 +61,6 @@
   }
   100% {
     opacity: 0;
-    transform: translateX(150%);
+    transform: translateX(-150%);
   }
 }
