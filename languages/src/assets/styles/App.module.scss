@@ -1,0 +1,32 @@
+@import "./variables.scss";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: $color_green_dark;
+  &__logo {
+    width: 4rem;
+    padding: 5px 0 5px 10px;
+  }
+  nav {
+    display: flex;
+    width: 30%;
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      li {
+        list-style-type: none;
+        .nav__item {
+          color: $color_pink_light;
+          text-decoration: none;
+          font-family: $font_regular;
+          font-size: $font_size_big;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+}
