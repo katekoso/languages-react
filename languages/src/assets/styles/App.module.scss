@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: row;
   background-color: $color_green_dark;
+  position: fixed;
+  width: 100vw;
+  top: 0;
   &__logo {
     width: 4rem;
     padding: 5px 0 5px 10px;
@@ -29,4 +32,10 @@
       }
     }
   }
+}
+
+.main {
+  background-color: $color_pink_light;
+  height: 91vh;
+  margin-top: 9vh;
 }

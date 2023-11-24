@@ -27,6 +27,7 @@ function Slider(props) {
       }
 
     return (
+        <div className={styles.container}>
         <div className={styles.slider}>
             <div className={styles.slider__main}>
                 <SliderButton direction={"prev"} moveSlide={showPrevious}/>
@@ -45,6 +46,7 @@ function Slider(props) {
                 <SliderButton direction={"next"} moveSlide={showNext}/>
             </div>
             <div className={styles.slider__count}>{selectedIndex + 1}/{words.length}</div>
+        </div>
         </div>
     );
 }

@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import List from './assets/components/List/List';
 import Slider from './assets/components/Slider/Slider';
+import NoMatch from './assets/components/NoMatch/NoMatch';
 import logo from './assets/images/logo2.png';
 const data = require('./assets/components/data.json');
 
@@ -26,7 +27,7 @@ function App() {
           </ul>
         </nav>
       </header>
-      <main>
+      <main className={styles.main}>
         <Routes>
           <Route path="/game" element={<Slider words={data} />} />
           <Route exact path="/" element={<List />} />
