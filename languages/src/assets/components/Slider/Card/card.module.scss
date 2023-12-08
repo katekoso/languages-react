@@ -42,6 +42,9 @@
       &:hover {
         background-color: $color_brown;
       }
+      &:focus {
+        border: 1px solid $color_pink_light;
+      }
     }
     .check__text {
       font-size: $font_size_big;

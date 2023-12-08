@@ -7,6 +7,11 @@ import SliderButton from './SliderButton';
 function Slider(props) {
     const { words, firstWordIndex } = props;
     const [selectedIndex, setSelectedIndex] = useState(firstWordIndex);
+    const [learnedWordsCount, setLearnedWordsCount] = useState(0);
+
+    const countWords = () => {
+        setLearnedWordsCount(learnedWordsCount + 1);
+    }
 
     const showPrevious = () => {
         if(selectedIndex !== 0){
@@ -29,6 +34,7 @@ function Slider(props) {
     return (
         <div className={styles.container}>
         <div className={styles.slider}>
+            <div className={styles.slider__learn}>За урок вы изучили слов: {learnedWordsCount}</div>
             <div className={styles.slider__main}>
                 <SliderButton direction={"prev"} moveSlide={showPrevious}/>
                 <SwitchTransition mode="out-in">
@@ -40,7 +46,7 @@ function Slider(props) {
                             exitActive: styles.myClassExitActive
                         }}
                     >
-                        <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} key={words[selectedIndex].id}/>
+                        <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} countWords={countWords} key={words[selectedIndex].id}/>
                     </CSSTransition>
                 </SwitchTransition>
                 <SliderButton direction={"next"} moveSlide={showNext}/>

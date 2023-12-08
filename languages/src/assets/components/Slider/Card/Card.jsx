@@ -1,13 +1,19 @@
-import {useState} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import styles from './card.module.scss';
 
 function Card(props) {
-    const {english, russian, transcription} = props;
+    const {english, russian, transcription, countWords} = props;
     let [hidden, setHidden] = useState(false);
 
     const handleClick = () => {
-        setHidden(!hidden);
+        setHidden(hidden = true);
     }
+
+    const buttonRef = useRef(null);
+
+    useEffect(() => {
+        buttonRef.current.focus();
+    }, []);
 
     return (
         <div className={styles.card + ' ' + styles.animate}>
@@ -19,7 +25,7 @@ function Card(props) {
                 {
                     hidden
                     ? <span className={styles.check__text}>{russian}</span>
-                    : <button className={styles.check__button}>Проверить</button>
+                    : <button className={styles.check__button} onClick={countWords} ref={buttonRef}>Проверить</button>
                 }
             </div>
         </div>
