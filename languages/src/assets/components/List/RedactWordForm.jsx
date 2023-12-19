@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import styles from './list.module.scss';
 import Button from './Button';
 import green from '../../styles/themes/green-theme.module.scss';
@@ -7,17 +7,35 @@ import save from '../../images/save.svg';
 import cancel from '../../images/cancel.svg';
 import ReadWordField from './ReadWordField';
 
-function RedactWordForm(props) {
-    const {id, english, russian, transcription, tags} = props;
-    const [valueWord, setValueWord] = useState(english);
-    const [valueTranslation, setValueTranslation] = useState(russian);
-    const [valueTranscription, setValueTranscription] = useState(transcription);
-    const [valueTopic, setValueTopic] = useState(tags);
+function RedactWordForm({ id, english, russian, transcription, tags }) {
     let [redacted, setRedacted] = useState(true);
+    let [empty, setEmpty] = useState(false);
+    const [state, setState] = useState({
+        valueWord: english,
+        valueTranslation: russian,
+        valueTranscription: transcription,
+        valueTopic: tags
+    })
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setState({
+            ...state,
+            [e.target.name]: value
+        });
+    }
 
     const handleClick = () => {
         setRedacted(redacted = false);
     }
+
+    useEffect(() => {
+        if (state.valueWord.trim().length === 0 || state.valueTranslation.trim().length === 0 || state.valueTranscription.trim().length === 0 || state.valueTopic.trim().length === 0) {
+            setEmpty(empty = true);
+        } else {
+            setEmpty(empty = false);
+        }    
+    }, [state.valueWord, state.valueTranslation, state.valueTranscription, state.valueTopic]);
 
     return (
         <>
@@ -26,19 +44,19 @@ function RedactWordForm(props) {
             ?  <tr className={styles.row}>
             <th className={styles.cell + " " + styles.first}>{id}</th>
             <td className={styles.cell}>
-                <input className={styles.cell__input} value={valueWord} onChange={event => setValueWord(event.target.valueWord)}/>
+                <input className={styles.cell__input} name="valueWord" value={state.valueWord} onChange={handleChange}/>
             </td>
             <td className={styles.cell}>
-                <input className={styles.cell__input} value={valueTranslation} onChange={event => setValueTranslation(event.target.valueTranslation)}/>
+                <input className={styles.cell__input} name="valueTranslation" value={state.valueTranslation} onChange={handleChange}/>
             </td>
             <td className={styles.cell}>
-                <input className={styles.cell__input} value={valueTranscription} onChange={event => setValueTranscription(event.target.valueTranscription)}/>
+                <input className={styles.cell__input} name="valueTranscription" value={state.valueTranscription} onChange={handleChange}/>
             </td>
             <td className={styles.cell}>
-                <input className={styles.cell__input} value={valueTopic} onChange={event => setValueTopic(event.target.valueTopic)}/>
+                <input className={styles.cell__input} name="valueTopic" value={state.valueTopic} onChange={handleChange}/>
             </td>
             <td className={styles.buttons}>
-                    <Button theme={green} buttonImg={save}></Button>
+                    <Button theme={green} buttonImg={save} disabled={empty}></Button>
                     <Button theme={red} buttonImg={cancel} onClick={handleClick}></Button>
             </td>
         </tr>
