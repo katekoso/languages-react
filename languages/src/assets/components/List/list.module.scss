@@ -35,19 +35,12 @@ thead {
       &__input {
         box-sizing: border-box;
         width: 100%;
-        border: 2px solid $color_brown;
         border-radius: 5px;
         color: $color_brown;
         outline: none;
         padding: 6px;
         font-family: $font_regular;
         font-size: $font_size_regular;
-        &:hover {
-          border: 2px solid $color_pink;
-        }
-        &:focus {
-          border: 2px solid $color_pink_dark;
-        }
       }
     }
     .buttons {
@@ -72,5 +65,19 @@ thead {
         }
       }
     }
+  }
+}
+
+.error {
+  border: 2px solid red;
+}
+
+.correct {
+  border: 2px solid $color_brown;
+  &:hover {
+    border: 2px solid $color_pink;
+  }
+  &:focus {
+    border: 2px solid $color_pink_dark;
   }
 }

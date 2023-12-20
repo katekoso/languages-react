@@ -44,16 +44,16 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
             ?  <tr className={styles.row}>
             <th className={styles.cell + " " + styles.first}>{id}</th>
             <td className={styles.cell}>
-                <input className={styles.cell__input} name="valueWord" value={state.valueWord} onChange={handleChange}/>
+                <input className={state.valueWord.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueWord" value={state.valueWord} onChange={handleChange}/>
             </td>
             <td className={styles.cell}>
-                <input className={styles.cell__input} name="valueTranslation" value={state.valueTranslation} onChange={handleChange}/>
+                <input className={state.valueTranslation.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueTranslation" value={state.valueTranslation} onChange={handleChange}/>
             </td>
             <td className={styles.cell}>
-                <input className={styles.cell__input} name="valueTranscription" value={state.valueTranscription} onChange={handleChange}/>
+                <input className={state.valueTranscription.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueTranscription" value={state.valueTranscription} onChange={handleChange}/>
             </td>
             <td className={styles.cell}>
-                <input className={styles.cell__input} name="valueTopic" value={state.valueTopic} onChange={handleChange}/>
+                <input className={state.valueTopic.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueTopic" value={state.valueTopic} onChange={handleChange}/>
             </td>
             <td className={styles.buttons}>
                     <Button theme={green} buttonImg={save} disabled={empty}></Button>
