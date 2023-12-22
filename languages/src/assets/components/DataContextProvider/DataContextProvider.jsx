@@ -23,8 +23,7 @@ function DataContextProvider(props) {
             .catch(error => setError(error));
     }, []);
 
-    function updateWord(id, valueWord, valueTranslation, valueTranscription, valueTopic) {
-
+    const updateWord = (id, valueWord, valueTranslation, valueTranscription, valueTopic) => {
         fetch(`/api/words/${id}/update`, {
             method: "POST",
             body: JSON.stringify({ english: valueWord, russian: valueTranslation, transcription: valueTranscription, tags: valueTopic}),
@@ -38,9 +37,28 @@ function DataContextProvider(props) {
                     setWords(updatedWords);
                 })
         }
+       
+    const addWord = (newValueWord,
+    newValueTranslation,
+    newValueTranscription,
+    newValueTopic) => {
+        fetch('/api/words/add', {
+            method: "POST",
+            body: JSON.stringify({
+                english: newValueWord, russian: newValueTranslation, transcription: newValueTranscription, tags: newValueTopic               
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },           
+        })
+            .then(response => response.json())
+            .then(data => {
+                setWords([...words, data])
+            })
+    } 
 
     return (
-        <DataContext.Provider value={{ words, loading, updateWord }}>
+        <DataContext.Provider value={{ words, loading, updateWord, addWord }}>
             {props.children}
         </DataContext.Provider>
     );

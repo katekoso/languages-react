@@ -32,14 +32,6 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
         });
     }
 
-    /*const handleChange = (id, key, value) => {
-        setState(values => {
-          return values.map(item =>
-            item.id === id ? { ...item, [key]: value } : item
-          )
-        })
-    }*/
-
     const handleClickCloseRedact = () => {
         setRedacted(redacted = false);
     }
