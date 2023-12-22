@@ -3,6 +3,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import styles from './slider.module.scss';
 import Card from './Card/Card';
 import SliderButton from './SliderButton';
+import Loader from '../Loader/Loader';
 
 function Slider({ words, firstWordIndex, loading }) {
     const [selectedIndex, setSelectedIndex] = useState(firstWordIndex);
@@ -31,10 +32,14 @@ function Slider({ words, firstWordIndex, loading }) {
       }
 
     return (
-        <div>
+        <>
             {
                 loading ?
-                (<p>Loading ...</p>)
+                (
+                    <div className={styles.container}> 
+                        <Loader />
+                    </div>
+                )
                 :
                 (
                     <div className={styles.container}>
@@ -61,7 +66,7 @@ function Slider({ words, firstWordIndex, loading }) {
                     </div>
                 )
             }
-        </div>
+        </>
     );
 }
 
