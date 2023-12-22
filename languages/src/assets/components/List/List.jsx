@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import styles from './list.module.scss';
 import ReadWordField from './ReadWordField';
-const data = require('../data.json');
+//const data = require('../data.json');
+import { DataContext } from '../DataContextProvider/DataContextProvider';
 
 function List() {
+    const { words } = useContext(DataContext);
     return (
         <table className={styles.list}>
           <caption>Ваши слова</caption>
@@ -18,7 +21,7 @@ function List() {
           </thead>
           <tbody>
       {
-        data.map((word) =>
+        words.map((word) =>
             { 
                 return <ReadWordField {...word} key={word.id}/>
             }

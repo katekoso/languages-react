@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import styles from './list.module.scss';
 import Button from './Button';
 import green from '../../styles/themes/green-theme.module.scss';
@@ -6,8 +6,10 @@ import red from '../../styles/themes/red-theme.module.scss';
 import save from '../../images/save.svg';
 import cancel from '../../images/cancel.svg';
 import ReadWordField from './ReadWordField';
+import { DataContext } from '../DataContextProvider/DataContextProvider';
 
 function RedactWordForm({ id, english, russian, transcription, tags }) {
+    const { updateWord } = useContext(DataContext);
     let [redacted, setRedacted] = useState(true);
     let [empty, setEmpty] = useState(false);
     const [state, setState] = useState({
@@ -29,6 +31,14 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
             [e.target.name]: value
         });
     }
+
+    /*const handleChange = (id, key, value) => {
+        setState(values => {
+          return values.map(item =>
+            item.id === id ? { ...item, [key]: value } : item
+          )
+        })
+    }*/
 
     const handleClickCloseRedact = () => {
         setRedacted(redacted = false);
@@ -78,7 +88,8 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
 
     const handleClickSaveRedact = () => {
         if (validate()) {
-            console.log(`Слово: ${state.valueWord}, перевод: ${state.valueTranslation}, транскрипция: ${state.valueTranscription}, тэг: ${state.valueTopic}`);
+            updateWord(id, state.valueWord, state.valueTranslation, state.valueTranscription, state.valueTopic);
+            setRedacted(redacted = false);
         }
     }
 

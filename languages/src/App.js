@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import styles from './assets/styles/App.module.scss';
 import {
   BrowserRouter as Router,
@@ -9,9 +10,11 @@ import List from './assets/components/List/List';
 import Slider from './assets/components/Slider/Slider';
 import NoMatch from './assets/components/NoMatch/NoMatch';
 import logo from './assets/images/logo2.png';
-const data = require('./assets/components/data.json');
+//const data = require('./assets/components/data.json');
+import { DataContext } from './assets/components/DataContextProvider/DataContextProvider';
 
 function App() {
+  const { words, loading } = useContext(DataContext);
   return (
     <Router>
       <header className={styles.header}>
@@ -29,7 +32,7 @@ function App() {
       </header>
       <main className={styles.main}>
         <Routes>
-          <Route path="/game" element={<Slider words={data} />} />
+          <Route path="/game" element={<Slider words={words} loading={loading}/>} />
           <Route exact path="/" element={<List />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>

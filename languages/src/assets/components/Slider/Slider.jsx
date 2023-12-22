@@ -4,8 +4,7 @@ import styles from './slider.module.scss';
 import Card from './Card/Card';
 import SliderButton from './SliderButton';
 
-function Slider(props) {
-    const { words, firstWordIndex } = props;
+function Slider({ words, firstWordIndex, loading }) {
     const [selectedIndex, setSelectedIndex] = useState(firstWordIndex);
     const [learnedWordsCount, setLearnedWordsCount] = useState(0);
 
@@ -32,27 +31,36 @@ function Slider(props) {
       }
 
     return (
-        <div className={styles.container}>
-        <div className={styles.slider}>
-            <div className={styles.slider__learn}>За урок вы изучили слов: {learnedWordsCount}</div>
-            <div className={styles.slider__main}>
-                <SliderButton direction={"prev"} moveSlide={showPrevious}/>
-                <SwitchTransition mode="out-in">
-                    <CSSTransition 
-                        key={selectedIndex}
-                        timeout={500}
-                        classNames={{
-                            enterActive: styles.myClassEnterActive,
-                            exitActive: styles.myClassExitActive
-                        }}
-                    >
-                        <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} countWords={countWords} key={words[selectedIndex].id}/>
-                    </CSSTransition>
-                </SwitchTransition>
-                <SliderButton direction={"next"} moveSlide={showNext}/>
-            </div>
-            <div className={styles.slider__count}>{selectedIndex + 1}/{words.length}</div>
-        </div>
+        <div>
+            {
+                loading ?
+                (<p>Loading ...</p>)
+                :
+                (
+                    <div className={styles.container}>
+                    <div className={styles.slider}>
+                        <div className={styles.slider__learn}>За урок вы изучили слов: {learnedWordsCount}</div>
+                        <div className={styles.slider__main}>
+                            <SliderButton direction={"prev"} moveSlide={showPrevious}/>
+                            <SwitchTransition mode="out-in">
+                                <CSSTransition 
+                                    key={selectedIndex}
+                                    timeout={500}
+                                    classNames={{
+                                        enterActive: styles.myClassEnterActive,
+                                        exitActive: styles.myClassExitActive
+                                    }}
+                                >
+                                    <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} countWords={countWords} key={words[selectedIndex].id}/>
+                                </CSSTransition>
+                            </SwitchTransition>
+                            <SliderButton direction={"next"} moveSlide={showNext}/>
+                        </div>
+                        <div className={styles.slider__count}>{selectedIndex + 1}/{words.length}</div>
+                    </div>
+                    </div>
+                )
+            }
         </div>
     );
 }
