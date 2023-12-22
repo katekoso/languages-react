@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './list.module.scss';
 import ReadWordField from './ReadWordField';
 import { DataContext } from '../DataContextProvider/DataContextProvider';
@@ -7,6 +7,7 @@ import green from '../../styles/themes/green-theme.module.scss';
 import red from '../../styles/themes/red-theme.module.scss';
 import save from '../../images/save.svg';
 import cancel from '../../images/cancel.svg';
+import checkEmpty from '../../scripts/checkEmpty';
 
 function List() {
     const { words, addWord } = useContext(DataContext);
@@ -20,8 +21,16 @@ function List() {
     });
 
     const handleClickAddRow = () => {
-        setAddRow(addRow = true);        
+        setAddRow(addRow = true); 
     }
+
+    useEffect(() => {
+        if (checkEmpty(newWord.newValueWord, newWord.newValueTranslation, newWord.newValueTranscription, newWord.newValueTopic)) {
+            setEmpty(empty = true);
+        } else {
+            setEmpty(empty = false);
+        }  
+    }, [newWord.newValueWord, newWord.newValueTranslation, newWord.newValueTranscription, newWord.newValueTopic])
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -62,19 +71,19 @@ function List() {
               <tr className={styles.row}>
                 <th className={styles.cell + " " + styles.first}></th>
                 <td className={styles.cell}>
-                    <input name="newValueWord" value={newWord.newValueWord} onChange={handleChange} />
+                    <input className={newWord.newValueWord.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="newValueWord" value={newWord.newValueWord} onChange={handleChange} />
                 </td>
                 <td className={styles.cell}>
-                    <input name="newValueTranslation" value={newWord.newValueTranslation} onChange={handleChange} />
+                    <input className={newWord.newValueTranslation.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct}  name="newValueTranslation" value={newWord.newValueTranslation} onChange={handleChange} />
                 </td>
                 <td className={styles.cell}>
-                    <input name="newValueTranscription" value={newWord.newValueTranscription} onChange={handleChange} />
+                    <input className={newWord.newValueTranscription.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="newValueTranscription" value={newWord.newValueTranscription} onChange={handleChange} />
                 </td>
                 <td className={styles.cell}>
-                    <input name="newValueTopic" value={newWord.newValueTopic} onChange={handleChange} />
+                    <input className={newWord.newValueTopic.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="newValueTopic" value={newWord.newValueTopic} onChange={handleChange} />
                 </td>
                 <td className={styles.buttons}>
-                    <Button theme={green} buttonImg={save} onClick={handleClickAddWord}></Button>
+                    <Button theme={green} buttonImg={save} onClick={handleClickAddWord} disabled={empty}></Button>
                     <Button theme={red} buttonImg={cancel} onClick={handleClickCloseAdd}></Button>
                 </td>
               </tr>

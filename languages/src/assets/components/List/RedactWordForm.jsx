@@ -7,6 +7,7 @@ import save from '../../images/save.svg';
 import cancel from '../../images/cancel.svg';
 import ReadWordField from './ReadWordField';
 import { DataContext } from '../DataContextProvider/DataContextProvider';
+import checkEmpty from '../../scripts/checkEmpty';
 
 function RedactWordForm({ id, english, russian, transcription, tags }) {
     const { updateWord } = useContext(DataContext);
@@ -37,7 +38,7 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
     }
 
     useEffect(() => {
-        if (state.valueWord.trim().length === 0 || state.valueTranslation.trim().length === 0 || state.valueTranscription.trim().length === 0 || state.valueTopic.trim().length === 0) {
+        if (checkEmpty(state.valueWord, state.valueTranslation, state.valueTranscription, state.valueTopic)) {
             setEmpty(empty = true);
         } else {
             setEmpty(empty = false);

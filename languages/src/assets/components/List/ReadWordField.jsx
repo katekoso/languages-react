@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState, useContext} from 'react';
 import styles from './list.module.scss';
 import Button from './Button';
 import purple from '../../styles/themes/purple-theme.module.scss';
@@ -6,13 +6,18 @@ import red from '../../styles/themes/red-theme.module.scss';
 import redact from '../../images/redact.svg';
 import del from '../../images/del.svg';
 import RedactWordForm from './RedactWordForm';
+import { DataContext } from '../DataContextProvider/DataContextProvider';
 
-function ReadWordField(props) {
-    const {id, english, russian, transcription, tags} = props;
+function ReadWordField({ id, english, russian, transcription, tags }) {
+    const { deleteWord } = useContext(DataContext);
     let [redacted, setRedacted] = useState(false);
 
-    const handleClick = () => {
+    const handleClickRedact = () => {
         setRedacted(redacted = true);
+    }
+
+    const handleClickDelete = () => {
+        deleteWord(id);
     }
 
     return (
@@ -28,8 +33,8 @@ function ReadWordField(props) {
             <td className={styles.cell}>{transcription}</td>
             <td className={styles.cell}>{tags}</td>
             <td className={styles.buttons}>
-                <Button theme={purple} buttonImg={redact} onClick={handleClick}></Button>
-                <Button theme={red} buttonImg={del} ></Button>
+                <Button theme={purple} buttonImg={redact} onClick={handleClickRedact}></Button>
+                <Button theme={red} buttonImg={del} onClick={handleClickDelete}></Button>
               </td>
             </tr>
             </>

@@ -33,7 +33,7 @@ function DataContextProvider(props) {
         })
                 .then(response => response.json())
                 .then(data => {
-                    const updatedWords = words.map(word => word.id === id ? { id: id, english: data.english, russian: data.russian, transcription: data.transcription, tags: data.tags} : word)
+                    const updatedWords = words.map(word => word.id === id ? { id: id, english: data.english, russian: data.russian, transcription: data.transcription, tags: data.tags} : word);
                     setWords(updatedWords);
                 })
         }
@@ -53,12 +53,23 @@ function DataContextProvider(props) {
         })
             .then(response => response.json())
             .then(data => {
-                setWords([...words, data])
+                setWords([...words, data]);
             })
     } 
 
+    const deleteWord = (id) => {
+        fetch(`/api/words/${id}/delete`, {
+            method: "POST"
+        })
+            .then(response => response.json())
+            .then(() => {
+                const updatedWords = words.filter(word => word.id !== id);
+                setWords(updatedWords);
+            })
+    }
+
     return (
-        <DataContext.Provider value={{ words, loading, updateWord, addWord }}>
+        <DataContext.Provider value={{ words, loading, updateWord, addWord, deleteWord }}>
             {props.children}
         </DataContext.Provider>
     );
