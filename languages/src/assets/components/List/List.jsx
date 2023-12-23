@@ -8,9 +8,10 @@ import red from '../../styles/themes/red-theme.module.scss';
 import save from '../../images/save.svg';
 import cancel from '../../images/cancel.svg';
 import checkEmpty from '../../scripts/checkEmpty';
+import Error from '../Errors/Error';
 
 function List() {
-    const { words, addWord } = useContext(DataContext);
+    const { words, addWord, error } = useContext(DataContext);
     let [empty, setEmpty] = useState(true);
     let [addRow, setAddRow] = useState(false);
     const [newWord, setNewWord] = useState({
@@ -41,9 +42,8 @@ function List() {
     }
 
     const handleClickAddWord = () => {
-        addWord(newWord.newValueWord, newWord.newValueTranslation, newWord.newValueTranscription, newWord. newValueTopic);
-        console.log(newWord);
-        setAddRow(addRow = false);        
+            addWord(newWord.newValueWord, newWord.newValueTranslation, newWord.newValueTranscription, newWord.newValueTopic);
+            setAddRow(addRow = false);   
     }
 
     const handleClickCloseAdd = () => {
@@ -51,6 +51,14 @@ function List() {
     }
 
     return (
+        <>
+        {
+            error ?
+            (
+                <Error />
+            )
+            :
+            (       
         <table className={styles.list}>
           <caption>Ваши слова</caption>
           <thead>
@@ -61,7 +69,7 @@ function List() {
             <th className={styles.cell}>transcription</th>
             <th className={styles.cell}>topic</th>
             <th className={styles.buttons}>
-                <button onClick={handleClickAddRow}>+</button>
+                <button className={styles.addButton} onClick={handleClickAddRow}>+</button>
             </th>
           </tr>
           </thead>
@@ -97,6 +105,9 @@ function List() {
        }
        </tbody>
         </table>
+        )
+    }
+        </>
     );
 }
 

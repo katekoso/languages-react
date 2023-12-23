@@ -13,7 +13,7 @@ function DataContextProvider(props) {
                 if (response.ok) { 
                     return response.json();
                 } else {
-                    throw new Error('Something went wrong ...');
+                    throw new Error('Что-то пошло не так ...');
                 }
             })     
             .then((response) => {
@@ -36,12 +36,10 @@ function DataContextProvider(props) {
                     const updatedWords = words.map(word => word.id === id ? { id: id, english: data.english, russian: data.russian, transcription: data.transcription, tags: data.tags} : word);
                     setWords(updatedWords);
                 })
+                .catch(error => setError(error));
         }
        
-    const addWord = (newValueWord,
-    newValueTranslation,
-    newValueTranscription,
-    newValueTopic) => {
+    const addWord = (newValueWord, newValueTranslation, newValueTranscription, newValueTopic) => {
         fetch('/api/words/add', {
             method: "POST",
             body: JSON.stringify({
@@ -55,6 +53,7 @@ function DataContextProvider(props) {
             .then(data => {
                 setWords([...words, data]);
             })
+            .catch(error => setError(error));
     } 
 
     const deleteWord = (id) => {
@@ -66,10 +65,11 @@ function DataContextProvider(props) {
                 const updatedWords = words.filter(word => word.id !== id);
                 setWords(updatedWords);
             })
+            .catch(error => setError(error));
     }
 
     return (
-        <DataContext.Provider value={{ words, loading, updateWord, addWord, deleteWord }}>
+        <DataContext.Provider value={{ words, loading, updateWord, addWord, deleteWord, error }}>
             {props.children}
         </DataContext.Provider>
     );

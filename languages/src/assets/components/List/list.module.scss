@@ -85,3 +85,13 @@ thead {
 .textError {
   color: $color_pink_dark;
 }
+
+.addButton {
+  background-color: $color_pink_light;
+  color: $color_brown;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $color_green;
+  }
+}

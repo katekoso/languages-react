@@ -8,9 +8,8 @@ import {
 } from "react-router-dom";
 import List from './assets/components/List/List';
 import Slider from './assets/components/Slider/Slider';
-import NoMatch from './assets/components/NoMatch/NoMatch';
+import NoMatch from './assets/components/Errors/NoMatch.jsx';
 import logo from './assets/images/logo2.png';
-//const data = require('./assets/components/data.json');
 import { DataContext } from './assets/components/DataContextProvider/DataContextProvider';
 
 function App() {
