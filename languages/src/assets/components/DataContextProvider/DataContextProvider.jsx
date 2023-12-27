@@ -17,56 +17,62 @@ function DataContextProvider(props) {
                 }
             })     
             .then((response) => {
-                setWords(words = response);
+                setWords(response);
                 setLoading(false);
             })    
-            .catch(error => setError(error));
+            .catch(error => {
+                    setError(error);
+                    setLoading(false);
+            });    
     }, []);
 
+    const performFetch = (url, options, callback) => {
+        setLoading(true);
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                callback(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error);
+                setLoading(false);
+            });
+    };
+
     const updateWord = (id, valueWord, valueTranslation, valueTranscription, valueTopic) => {
-        fetch(`/api/words/${id}/update`, {
+        performFetch(`/api/words/${id}/update`, {
             method: "POST",
             body: JSON.stringify({ english: valueWord, russian: valueTranslation, transcription: valueTranscription, tags: valueTopic}),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },
-        })
-                .then(response => response.json())
-                .then(data => {
-                    const updatedWords = words.map(word => word.id === id ? { id: id, english: data.english, russian: data.russian, transcription: data.transcription, tags: data.tags} : word);
-                    setWords(updatedWords);
-                })
-                .catch(error => setError(error));
-        }
+        }, data => {
+            setWords(words => words.map(word => word.id === id ? {...data, id} : word));
+        });
+    };
        
     const addWord = (newValueWord, newValueTranslation, newValueTranscription, newValueTopic) => {
-        fetch('/api/words/add', {
+        performFetch('/api/words/add', {
             method: "POST",
             body: JSON.stringify({
                 english: newValueWord, russian: newValueTranslation, transcription: newValueTranscription, tags: newValueTopic               
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-              },           
-        })
-            .then(response => response.json())
-            .then(data => {
-                setWords([...words, data]);
-            })
-            .catch(error => setError(error));
-    } 
+            },           
+        }, data => {
+            setWords(words => [...words, data]);
+        });
+    };
 
     const deleteWord = (id) => {
-        fetch(`/api/words/${id}/delete`, {
+        performFetch(`/api/words/${id}/delete`, {
             method: "POST"
-        })
-            .then(response => response.json())
-            .then(() => {
-                const updatedWords = words.filter(word => word.id !== id);
-                setWords(updatedWords);
-            })
-            .catch(error => setError(error));
-    }
+        }, () => {
+            setWords(words => words.filter(word => word.id !== id));
+        }); 
+    };
 
     return (
         <DataContext.Provider value={{ words, loading, updateWord, addWord, deleteWord, error }}>
