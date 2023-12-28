@@ -5,14 +5,18 @@ import purple from '../../styles/themes/purple-theme.module.scss';
 import red from '../../styles/themes/red-theme.module.scss';
 import redact from '../../images/redact.svg';
 import del from '../../images/del.svg';
-import RedactWordForm from './RedactWordForm';
+import RedactWordForm from './RedactWordForm/RedactWordForm';
+import { observer, inject } from "mobx-react";
 
-function ReadWordField(props) {
-    const {id, english, russian, transcription, tags} = props;
+const ReadWordField = inject(['WordsStore'])(observer(({ id, english, russian, transcription, tags, WordsStore }) => {
     let [redacted, setRedacted] = useState(false);
 
-    const handleClick = () => {
+    const handleClickRedact = () => {
         setRedacted(redacted = true);
+    }
+
+    const handleClickDelete = () => {
+        WordsStore.deleteWord(id);
     }
 
     return (
@@ -28,15 +32,15 @@ function ReadWordField(props) {
             <td className={styles.cell}>{transcription}</td>
             <td className={styles.cell}>{tags}</td>
             <td className={styles.buttons}>
-                <Button theme={purple} buttonImg={redact} onClick={handleClick}></Button>
-                <Button theme={red} buttonImg={del} ></Button>
+                <Button theme={purple} buttonImg={redact} onClick={handleClickRedact}></Button>
+                <Button theme={red} buttonImg={del} onClick={handleClickDelete}></Button>
               </td>
             </tr>
             </>
         }
         </>
     );
-}
+}));
 
 
 export default ReadWordField;

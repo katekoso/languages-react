@@ -3,9 +3,10 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import styles from './slider.module.scss';
 import Card from './Card/Card';
 import SliderButton from './SliderButton';
+import Loader from '../Loader/Loader';
+import { observer, inject } from "mobx-react";
 
-function Slider(props) {
-    const { words, firstWordIndex } = props;
+const Slider = inject(['WordsStore'])(observer(({ words, firstWordIndex, WordsStore })  => {
     const [selectedIndex, setSelectedIndex] = useState(firstWordIndex);
     const [learnedWordsCount, setLearnedWordsCount] = useState(0);
 
@@ -32,6 +33,16 @@ function Slider(props) {
       }
 
     return (
+        <>
+        {
+            WordsStore.isLoading ?
+            (
+                <div className={styles.container}> 
+                        <Loader />
+                    </div>
+            )
+            :
+            (
         <div className={styles.container}>
         <div className={styles.slider}>
             <div className={styles.slider__learn}>За урок вы изучили слов: {learnedWordsCount}</div>
@@ -54,8 +65,11 @@ function Slider(props) {
             <div className={styles.slider__count}>{selectedIndex + 1}/{words.length}</div>
         </div>
         </div>
+            )
+          }
+        </>
     );
-}
+}));
 
 Slider.defaultProps = {
 	words: [{english: 'Ошибка'}],

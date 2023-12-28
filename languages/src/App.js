@@ -9,9 +9,16 @@ import List from './assets/components/List/List';
 import Slider from './assets/components/Slider/Slider';
 import NoMatch from './assets/components/NoMatch/NoMatch';
 import logo from './assets/images/logo2.png';
-const data = require('./assets/components/data.json');
+import { observer, inject } from "mobx-react";
+import { useEffect } from 'react';
+//const data = require('./assets/components/data.json');
 
-function App() {
+const App = inject(['WordsStore'])(observer(({ WordsStore }) => {
+
+  useEffect(() => {
+    WordsStore.loadWords();
+  }, [])
+
   return (
     <Router>
       <header className={styles.header}>
@@ -29,13 +36,13 @@ function App() {
       </header>
       <main className={styles.main}>
         <Routes>
-          <Route path="/game" element={<Slider words={data} />} />
-          <Route exact path="/" element={<List />} />
+          <Route path="/game" element={<Slider words={WordsStore.words} />} />
+          <Route exact path="/" element={<List words={WordsStore.words}/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </main>
     </Router>
   );
-}
+}));
 
 export default App;

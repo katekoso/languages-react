@@ -1,14 +1,14 @@
-import {useState, useEffect} from 'react';
-import styles from './list.module.scss';
-import Button from './Button';
-import green from '../../styles/themes/green-theme.module.scss';
-import red from '../../styles/themes/red-theme.module.scss';
-import save from '../../images/save.svg';
-import cancel from '../../images/cancel.svg';
-import ReadWordField from './ReadWordField';
+import { useState, useEffect } from 'react';
+import styles from '../list.module.scss';
+import Button from '../Button';
+import green from '../../../styles/themes/green-theme.module.scss';
+import red from '../../../styles/themes/red-theme.module.scss';
+import save from '../../../images/save.svg';
+import cancel from '../../../images/cancel.svg';
+//import { observer, inject } from "mobx-react";
 
-function RedactWordForm({ id, english, russian, transcription, tags }) {
-    let [redacted, setRedacted] = useState(true);
+const RedactWordFormField = ({ id, english, russian, transcription, tags, func1, func2, stateForClick, handleClickRed }) => {
+
     let [empty, setEmpty] = useState(false);
     const [state, setState] = useState({
         valueWord: english,
@@ -28,10 +28,6 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
             ...state,
             [e.target.name]: value
         });
-    }
-
-    const handleClickCloseRedact = () => {
-        setRedacted(redacted = false);
     }
 
     useEffect(() => {
@@ -76,17 +72,16 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
         return true;
     }
 
-    const handleClickSaveRedact = () => {
+    const handleClickGreen = (func1, func2, stateForClick) => {
         if (validate()) {
-            console.log(`Слово: ${state.valueWord}, перевод: ${state.valueTranslation}, транскрипция: ${state.valueTranscription}, тэг: ${state.valueTopic}`);
+            //console.log(`Слово: ${state.valueWord}, перевод: ${state.valueTranslation}, транскрипция: ${state.valueTranscription}, тэг: ${state.valueTopic}`);
+            func1(id, state.valueWord, state.valueTranslation, state.valueTranscription, state.valueTopic);
+            func2(stateForClick = false);
         }
     }
 
     return (
-        <>
-        {
-            redacted 
-            ?  <tr className={styles.row}>
+        <tr className={styles.row}>
             <th className={styles.cell + " " + styles.first}>{id}</th>
             <td className={styles.cell}>
                 <input className={state.valueWord.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueWord" value={state.valueWord} onChange={handleChange}/>
@@ -104,14 +99,11 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
                 <input className={state.valueTopic.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueTopic" value={state.valueTopic} onChange={handleChange}/>
             </td>
             <td className={styles.buttons}>
-                    <Button theme={green} buttonImg={save} disabled={empty} onClick={handleClickSaveRedact}></Button>
-                    <Button theme={red} buttonImg={cancel} onClick={handleClickCloseRedact}></Button>
+                    <Button theme={green} buttonImg={save} disabled={empty} onClick={() => handleClickGreen(func1, func2, stateForClick)}></Button>
+                    <Button theme={red} buttonImg={cancel} onClick={handleClickRed}></Button>
             </td>
         </tr>
-        : <ReadWordField id={id} english={english} russian={russian} transcription={transcription} tags={tags} key={id}/>
-        }
-     </>
     );
-}
+};
 
-export default RedactWordForm;
+export default RedactWordFormField;

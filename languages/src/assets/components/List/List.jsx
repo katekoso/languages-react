@@ -1,9 +1,31 @@
 import styles from './list.module.scss';
 import ReadWordField from './ReadWordField';
-const data = require('../data.json');
+//const data = require('../data.json');
+//import { WordsStore } from '../../stores/WordsStore';
+import { useState, useEffect } from 'react';
+import { observer, inject } from "mobx-react";
+import RedactWordFormField from './RedactWordForm/RedactWordFormField';
 
-function List() {
+const List = inject(['WordsStore'])(observer(({ words, WordsStore }) => {
+    let [addRow, setAddRow] = useState(false);
+
+    const handleClickAddRow = () => {
+        setAddRow(addRow = true); 
+    }
+
+    const handleClickCloseAdd = () => {
+        setAddRow(addRow = false);         
+    }
+
     return (
+        <>
+        {
+            WordsStore.error ?
+            (
+                <div>Error</div>
+            )
+            :
+            (
         <table className={styles.list}>
           <caption>Ваши слова</caption>
           <thead>
@@ -13,12 +35,18 @@ function List() {
             <th className={styles.cell}>translation</th>
             <th className={styles.cell}>transcription</th>
             <th className={styles.cell}>topic</th>
-            <th className={styles.buttons}></th>
+            <th className={styles.buttons}>
+                <button className={styles.addButton} onClick={handleClickAddRow}>+</button>
+            </th>
           </tr>
           </thead>
           <tbody>
+            {
+                addRow &&
+                    <RedactWordFormField english='' russian='' transcription='' tags='' func1={WordsStore.addWord} func2={setAddRow} stateForClick={addRow} handleClickRed={handleClickCloseAdd}/>
+            }
       {
-        data.map((word) =>
+        words.map((word) =>
             { 
                 return <ReadWordField {...word} key={word.id}/>
             }
@@ -26,7 +54,23 @@ function List() {
        }
        </tbody>
         </table>
+            )
+        }
+        </>
     );
-}
+}));
 
 export default List;
+
+/*export default inject(({ WordsStore }) => {
+    const {words, loadWords, isLoading} = WordsStore;
+
+    useEffect(() => {
+        if(!isLoading) {
+            loadWords();
+        }
+    });
+    return(
+        words, loadWords
+    );
+})(observer(List));*/
