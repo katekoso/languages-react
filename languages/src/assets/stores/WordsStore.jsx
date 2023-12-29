@@ -7,8 +7,8 @@ class WordsStore {
 
     constructor() {
         makeAutoObservable(this);
-        this.performFetch = this.performFetch.bind(this);
-        this.addWord = this.addWord.bind(this);
+        //this.performFetch = this.performFetch.bind(this);
+        //this.addWord = this.addWord.bind(this);
     }
 
     loadWords = () => {
@@ -36,7 +36,13 @@ class WordsStore {
     performFetch = (url, options, callback) => {
         this.isLoading = true;
         fetch(url, options)
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) { 
+                    return response.json();
+                } else {
+                    throw new Error('Что-то пошло не так ...');
+                }
+            }) 
             .then(data => {
                 callback(data);
                 this.isLoading = false;
@@ -55,25 +61,25 @@ class WordsStore {
                 "Content-type": "application/json; charset=UTF-8",
             },
         }, data => {
+            runInAction(() => {
             this.words = this.words.map(word => word.id === id ? {...data, id} : word);
+            });
         });
     }
 
     addWord = (valueWord, valueTranslation, valueTranscription, valueTopic) => {
         this.performFetch('/api/words/add', {
             method: "POST",
-            body: JSON.stringify({
-                english: valueWord, russian: valueTranslation, transcription: valueTranscription, tags: valueTopic               
-            }),
+            body: JSON.stringify({english: valueWord, russian: valueTranslation, transcription: valueTranscription, tags: valueTopic}),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },           
             }, data => {
                 console.log(data);
-                runInAction(() => {
+                /*runInAction(() => {
                     this.words = [...this.words, data];
-                })
-                console.log(data);
+                });
+                console.log(data);*/
             });
         };    
 
