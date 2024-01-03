@@ -7,11 +7,10 @@ import {
 } from "react-router-dom";
 import List from './assets/components/List/List';
 import Slider from './assets/components/Slider/Slider';
-import NoMatch from './assets/components/NoMatch/NoMatch';
+import NoMatch from './assets/components/Errors/NoMatch';
 import logo from './assets/images/logo2.png';
 import { observer, inject } from "mobx-react";
 import { useEffect } from 'react';
-//const data = require('./assets/components/data.json');
 
 const App = inject(['WordsStore'])(observer(({ WordsStore }) => {
 
@@ -36,7 +35,7 @@ const App = inject(['WordsStore'])(observer(({ WordsStore }) => {
       </header>
       <main className={styles.main}>
         <Routes>
-          <Route path="/game" element={<Slider words={WordsStore.words} />} />
+          <Route path="/game" element={<Slider words={WordsStore.words} isLoading={WordsStore.isLoading}/>} />
           <Route exact path="/" element={<List words={WordsStore.words}/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>

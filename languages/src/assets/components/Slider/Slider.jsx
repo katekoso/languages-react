@@ -4,9 +4,8 @@ import styles from './slider.module.scss';
 import Card from './Card/Card';
 import SliderButton from './SliderButton';
 import Loader from '../Loader/Loader';
-import { observer, inject } from "mobx-react";
 
-const Slider = inject(['WordsStore'])(observer(({ words, firstWordIndex, WordsStore })  => {
+const Slider = ({ words, firstWordIndex, isLoading })  => {
     const [selectedIndex, setSelectedIndex] = useState(firstWordIndex);
     const [learnedWordsCount, setLearnedWordsCount] = useState(0);
 
@@ -35,7 +34,7 @@ const Slider = inject(['WordsStore'])(observer(({ words, firstWordIndex, WordsSt
     return (
         <>
         {
-            WordsStore.isLoading ?
+            isLoading ?
             (
                 <div className={styles.container}> 
                         <Loader />
@@ -43,33 +42,33 @@ const Slider = inject(['WordsStore'])(observer(({ words, firstWordIndex, WordsSt
             )
             :
             (
-        <div className={styles.container}>
-        <div className={styles.slider}>
-            <div className={styles.slider__learn}>За урок вы изучили слов: {learnedWordsCount}</div>
-            <div className={styles.slider__main}>
-                <SliderButton direction={"prev"} moveSlide={showPrevious}/>
-                <SwitchTransition mode="out-in">
-                    <CSSTransition 
-                        key={selectedIndex}
-                        timeout={500}
-                        classNames={{
-                            enterActive: styles.myClassEnterActive,
-                            exitActive: styles.myClassExitActive
-                        }}
-                    >
-                        <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} countWords={countWords} key={words[selectedIndex].id}/>
-                    </CSSTransition>
-                </SwitchTransition>
-                <SliderButton direction={"next"} moveSlide={showNext}/>
-            </div>
-            <div className={styles.slider__count}>{selectedIndex + 1}/{words.length}</div>
-        </div>
-        </div>
+                <div className={styles.container}>
+                    <div className={styles.slider}>
+                        <div className={styles.slider__learn}>За урок вы изучили слов: {learnedWordsCount}</div>
+                        <div className={styles.slider__main}>
+                            <SliderButton direction={"prev"} moveSlide={showPrevious}/>
+                            <SwitchTransition mode="out-in">
+                                <CSSTransition 
+                                    key={selectedIndex}
+                                    timeout={500}
+                                    classNames={{
+                                        enterActive: styles.myClassEnterActive,
+                                        exitActive: styles.myClassExitActive
+                                    }}
+                                >
+                                    <Card english={words[selectedIndex].english} russian={words[selectedIndex].russian} transcription={words[selectedIndex].transcription} countWords={countWords} key={words[selectedIndex].id}/>
+                                </CSSTransition>
+                            </SwitchTransition>
+                            <SliderButton direction={"next"} moveSlide={showNext}/>
+                        </div>
+                        <div className={styles.slider__count}>{selectedIndex + 1}/{words.length}</div>
+                    </div>
+                </div>
             )
-          }
+        }
         </>
     );
-}));
+};
 
 Slider.defaultProps = {
 	words: [{english: 'Ошибка'}],

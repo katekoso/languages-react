@@ -5,7 +5,6 @@ import green from '../../../styles/themes/green-theme.module.scss';
 import red from '../../../styles/themes/red-theme.module.scss';
 import save from '../../../images/save.svg';
 import cancel from '../../../images/cancel.svg';
-//import { observer, inject } from "mobx-react";
 
 const RedactWordFormField = ({ id, english, russian, transcription, tags, func1, func2, stateForClick, handleClickRed }) => {
 
@@ -74,7 +73,6 @@ const RedactWordFormField = ({ id, english, russian, transcription, tags, func1,
 
     const handleClickGreen = (func1, func2, stateForClick) => {
         if (validate()) {
-            //console.log(`Слово: ${state.valueWord}, перевод: ${state.valueTranslation}, транскрипция: ${state.valueTranscription}, тэг: ${state.valueTopic}`);
             func1(id, state.valueWord, state.valueTranslation, state.valueTranscription, state.valueTopic);
             func2(stateForClick = false);
         }
