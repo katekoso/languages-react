@@ -17,9 +17,9 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
         valueTopic: tags
     });
     const [errors, setErrors] = useState({
-        onlyEnglishLetters: '',
-        onlyRussianLetters: '',
-        onlyThisPattern: ''
+        onlyEnglishLetters: "",
+        onlyRussianLetters: "",
+        onlyThisPattern: ""
     });
 
     const handleChange = (e) => {
@@ -28,11 +28,11 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
             ...state,
             [e.target.name]: value
         });
-    }
+    };
 
     const handleClickCloseRedact = () => {
         setRedacted(redacted = false);
-    }
+    };
 
     useEffect(() => {
         if (state.valueWord.trim().length === 0 || state.valueTranslation.trim().length === 0 || state.valueTranscription.trim().length === 0 || state.valueTopic.trim().length === 0) {
@@ -43,9 +43,9 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
     }, [state.valueWord, state.valueTranslation, state.valueTranscription, state.valueTopic]);
 
     const validate = () => {
-        let onlyEnglishLetters = '';
-        let onlyRussianLetters = '';
-        let onlyThisPattern = '';
+        let onlyEnglishLetters = "";
+        let onlyRussianLetters = "";
+        let onlyThisPattern = "";
 
         const regexEnglishLetters = /^[A-Za-z]+$/;
         const regexRussianLetters = /^[А-Яа-я]+$/;
@@ -69,18 +69,18 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
         }
         
         setErrors({ 
-            onlyEnglishLetters: '',
-            onlyRussianLetters: '',
-            onlyThisPattern: ''
+            onlyEnglishLetters: "",
+            onlyRussianLetters: "",
+            onlyThisPattern: ""
         });
         return true;
-    }
+    };
 
     const handleClickSaveRedact = () => {
         if (validate()) {
             console.log(`Слово: ${state.valueWord}, перевод: ${state.valueTranslation}, транскрипция: ${state.valueTranscription}, тэг: ${state.valueTopic}`);
         }
-    }
+    };
 
     return (
         <>
@@ -89,19 +89,19 @@ function RedactWordForm({ id, english, russian, transcription, tags }) {
             ?  <tr className={styles.row}>
             <th className={styles.cell + " " + styles.first}>{id}</th>
             <td className={styles.cell}>
-                <input className={state.valueWord.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueWord" value={state.valueWord} onChange={handleChange}/>
+                <input className={state.valueWord.trim().length === 0 ? styles.cell__input + " " + styles.error : styles.cell__input + " " + styles.correct} name="valueWord" value={state.valueWord} onChange={handleChange}/>
                 <span className={styles.textError}>{errors.onlyEnglishLetters}</span>
             </td>
             <td className={styles.cell}>
-                <input className={state.valueTranslation.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueTranslation" value={state.valueTranslation} onChange={handleChange}/>
+                <input className={state.valueTranslation.trim().length === 0 ? styles.cell__input + " " + styles.error : styles.cell__input + " " + styles.correct} name="valueTranslation" value={state.valueTranslation} onChange={handleChange}/>
                 <span className={styles.textError}>{errors.onlyRussianLetters}</span>
             </td>
             <td className={styles.cell}>
-                <input className={state.valueTranscription.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueTranscription" value={state.valueTranscription} onChange={handleChange}/>
+                <input className={state.valueTranscription.trim().length === 0 ? styles.cell__input + " " + styles.error : styles.cell__input + " " + styles.correct} name="valueTranscription" value={state.valueTranscription} onChange={handleChange}/>
                 <span className={styles.textError}>{errors.onlyThisPattern}</span>
             </td>
             <td className={styles.cell}>
-                <input className={state.valueTopic.trim().length === 0 ? styles.cell__input + ' ' + styles.error : styles.cell__input + ' ' + styles.correct} name="valueTopic" value={state.valueTopic} onChange={handleChange}/>
+                <input className={state.valueTopic.trim().length === 0 ? styles.cell__input + " " + styles.error : styles.cell__input + " " + styles.correct} name="valueTopic" value={state.valueTopic} onChange={handleChange}/>
             </td>
             <td className={styles.buttons}>
                     <Button theme={green} buttonImg={save} disabled={empty} onClick={handleClickSaveRedact}></Button>
