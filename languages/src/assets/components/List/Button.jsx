@@ -7,12 +7,12 @@ const Button = ({ buttonImg, theme, onClick, disabled }) => {
 			onClick={onClick}
 			disabled={disabled}
 		>
-			<object
-				type="image/svg+xml"
-				data={buttonImg}
+			<img
+				src={buttonImg}
 				className={styles.buttonImg}
 				onClick={onClick}
-			></object>
+				alt="Button"
+			></img>
 		</button>
 	);
 };

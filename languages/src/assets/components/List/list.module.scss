@@ -2,90 +2,173 @@
 
 th,
 td {
-  border: 1px solid rgb(204, 204, 204);
-  padding: 8px;
+	border: 1px solid rgb(204, 204, 204);
+	padding: 8px;
 }
 
 thead {
-  background-color: $color_pink_dark;
-  color: $color_pink_light;
-  font-size: $font_size_big;
+	background-color: $color_pink_dark;
+	color: $color_pink_light;
+	font-size: $font_size_big;
 }
 
 .cell:not(.first) {
-  width: 20%;
-  height: 30px;
+	width: 20%;
+	height: 30px;
+}
+
+.cell__mobile {
+	display: none;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 5px;
+	position: absolute;
+	text-transform: uppercase;
+	top: 0;
+	left: 0;
+	background-color: $color_pink;
+	color: $color_brown;
 }
 
 .list {
-  border-collapse: collapse;
-  width: 100%;
-  background-color: $color_pink_light;
-  color: $color_brown;
-  font-family: $font_regular;
-  font-size: $font_size_regular;
-  margin-top: 5rem;
-  caption {
-    text-align: center;
-    font-size: $font_size_biggest;
-    padding: 5px;
-    font-weight: 700;
-  }
-  .row {
-    .cell {
-      &__input {
-        box-sizing: border-box;
-        width: 100%;
-        border-radius: 5px;
-        color: $color_brown;
-        outline: none;
-        padding: 6px;
-        font-family: $font_regular;
-        font-size: $font_size_regular;
-      }
-    }
-    .buttons {
-      width: 8%;
-      .button {
-        border: none;
-        padding: 2%;
-        margin: 0 4%;
-        width: 2rem;
-        height: 30px;
-        border-radius: 5px;
-        cursor: pointer;
-        &:disabled {
-          background-color: grey;
-          cursor: not-allowed;
-        }
-        .buttonImg {
-          box-sizing: border-box;
-          margin-top: 4px;
-          width: 70%;
-          pointer-events: none;
-        }
-      }
-    }
-  }
+	border-collapse: collapse;
+	width: 100%;
+	background-color: $color_pink_light;
+	color: $color_brown;
+	font-family: $font_regular;
+	font-size: $font_size_regular;
+	margin-top: 5rem;
+	caption {
+		text-align: center;
+		font-size: $font_size_biggest;
+		padding: 5px;
+		font-weight: 700;
+		margin-bottom: 5px;
+	}
+	.cell {
+		&__input {
+			box-sizing: border-box;
+			width: 100%;
+			border-radius: 5px;
+			color: $color_brown;
+			outline: none;
+			padding: 6px;
+			font-family: $font_regular;
+			font-size: $font_size_regular;
+		}
+	}
+	.buttons {
+		display: flex;
+		justify-content: center;
+		.button {
+			border: none;
+			padding: 2%;
+			margin: 0 4%;
+			width: 2rem;
+			height: 30px;
+			border-radius: 5px;
+			cursor: pointer;
+			&:disabled {
+				background-color: grey;
+				cursor: not-allowed;
+			}
+			.buttonImg {
+				box-sizing: border-box;
+				margin-top: 4px;
+				width: 70%;
+				pointer-events: none;
+			}
+		}
+	}
+}
+
+.firstRow {
+	display: flex;
+	justify-content: center;
+	.addButton {
+		background-color: $color_pink;
+		color: $color_pink_light;
+		border: none;
+		float: right;
+		width: 2rem;
+		height: 1.5rem;
+		cursor: pointer;
+		border-radius: 5px;
+		&:hover {
+			background-color: $color_pink_dark;
+		}
+	}
 }
 
 .error {
-  border: 2px solid red;
+	border: 2px solid red;
 }
 
 .correct {
-  border: 2px solid $color_brown;
-  &:hover {
-    border: 2px solid $color_pink;
-  }
-  &:focus {
-    border: 2px solid $color_pink_dark;
-  }
+	border: 2px solid $color_brown;
+	&:hover {
+		border: 2px solid $color_pink;
+	}
+	&:focus {
+		border: 2px solid $color_pink_dark;
+	}
 }
 
 .textError {
-  color: $color_pink_dark;
+	color: $color_pink_dark;
 }
 
 @media screen and (max-width: 767px) {
+	thead {
+		display: none;
+	}
+	tr {
+		border-bottom: 0;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-bottom: 30px;
+	}
+	td {
+		margin: 0 -1px -1px 0;
+		padding-top: 35px;
+		position: relative;
+		z-index: 1;
+	}
+	.cell__mobile {
+		display: block;
+	}
+	.cell:not(.first) {
+		width: 33%;
+		height: 25px;
+	}
+	.first {
+		display: none;
+	}
+	.list {
+		margin-left: 10px;
+		width: 98%;
+		.buttons {
+			box-sizing: border-box;
+			//width: 100%;
+			//height: 139px;
+			//padding: 0.8rem 1rem;
+			//margin-top: -69px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			gap: 5px;
+			//margin-bottom: 20px;
+			.button {
+				width: 3.5rem;
+				height: 3.5rem;
+			}
+		}
+	}
+	.row td:last-child {
+		height: 94px;
+		//padding: 0.8rem 1rem;
+		margin-top: -69px;
+	}
 }

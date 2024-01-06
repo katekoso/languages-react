@@ -157,18 +157,20 @@ const RedactWordFormField = ({
 					onChange={handleChange}
 				/>
 			</td>
-			<td className={styles.buttons}>
-				<Button
-					theme={green}
-					buttonImg={save}
-					disabled={empty}
-					onClick={() => handleClickGreen(func1, func2, stateForClick)}
-				></Button>
-				<Button
-					theme={red}
-					buttonImg={cancel}
-					onClick={handleClickRed}
-				></Button>
+			<td>
+				<div className={styles.buttons}>
+					<Button
+						theme={green}
+						buttonImg={save}
+						disabled={empty}
+						onClick={() => handleClickGreen(func1, func2, stateForClick)}
+					></Button>
+					<Button
+						theme={red}
+						buttonImg={cancel}
+						onClick={handleClickRed}
+					></Button>
+				</div>
 			</td>
 		</tr>
 	);

@@ -35,21 +35,35 @@ const ReadWordField = inject(["WordsStore"])(
 					<>
 						<tr className={styles.row}>
 							<th className={styles.cell + " " + styles.first}>{id}</th>
-							<td className={styles.cell}>{english}</td>
-							<td className={styles.cell}>{russian}</td>
-							<td className={styles.cell}>{transcription}</td>
-							<td className={styles.cell}>{tags}</td>
-							<td className={styles.buttons}>
-								<Button
-									theme={purple}
-									buttonImg={redact}
-									onClick={handleClickRedact}
-								></Button>
-								<Button
-									theme={red}
-									buttonImg={del}
-									onClick={handleClickDelete}
-								></Button>
+							<td className={styles.cell}>
+								<span className={styles.cell__mobile}>слово</span>
+								{english}
+							</td>
+							<td className={styles.cell}>
+								<span className={styles.cell__mobile}>перевод</span>
+								{russian}
+							</td>
+							<td className={styles.cell}>
+								<span className={styles.cell__mobile}>транскрипция</span>
+								{transcription}
+							</td>
+							<td className={styles.cell}>
+								<span className={styles.cell__mobile}>тема</span>
+								{tags}
+							</td>
+							<td>
+								<div className={styles.buttons}>
+									<Button
+										theme={purple}
+										buttonImg={redact}
+										onClick={handleClickRedact}
+									></Button>
+									<Button
+										theme={red}
+										buttonImg={del}
+										onClick={handleClickDelete}
+									></Button>
+								</div>
 							</td>
 						</tr>
 					</>

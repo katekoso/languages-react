@@ -31,17 +31,23 @@ const List = inject(["WordsStore"])(
 								<th className={styles.cell}>translation</th>
 								<th className={styles.cell}>transcription</th>
 								<th className={styles.cell}>topic</th>
-								<th className={styles.buttons}>
-									<button
-										className={styles.addButton}
-										onClick={handleClickAddRow}
-									>
-										+
-									</button>
-								</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
+							<tr>
+								<td colSpan="5"></td>
+								<td>
+									<div className={styles.firstRow}>
+										<button
+											className={styles.addButton}
+											onClick={handleClickAddRow}
+										>
+											+
+										</button>
+									</div>
+								</td>
+							</tr>
 							{addRow && (
 								<RedactWordFormField
 									english=""
