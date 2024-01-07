@@ -21,7 +21,7 @@ const App = inject(['WordsStore'])(observer(({ WordsStore }) => {
   return (
     <Router>
       <header className={styles.header}>
-        <Link to="/"><img src={logo} className={styles.header__logo}/></Link>
+        <Link to="/"><img src={logo} className={styles.header__logo} alt="Логотип"/></Link>
         <nav>
           <ul>
             <li>
