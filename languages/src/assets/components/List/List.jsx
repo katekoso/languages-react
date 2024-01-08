@@ -35,10 +35,10 @@ const List = inject(["WordsStore"])(
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr className={styles.addButtonRow}>
 								<td colSpan="5"></td>
 								<td>
-									<div className={styles.firstRow}>
+									<div className={styles.addButtonContainer}>
 										<button
 											className={styles.addButton}
 											onClick={handleClickAddRow}

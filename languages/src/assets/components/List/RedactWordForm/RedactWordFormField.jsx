@@ -75,6 +75,7 @@ const RedactWordFormField = ({
 		<tr className={styles.row}>
 			<th className={styles.cell + " " + styles.first}>{id}</th>
 			<td className={styles.cell}>
+				<span className={styles.cell__mobile}>слово</span>
 				<InputWithError
 					name="valueWord"
 					value={state.valueWord}
@@ -84,6 +85,7 @@ const RedactWordFormField = ({
 				/>
 			</td>
 			<td className={styles.cell}>
+				<span className={styles.cell__mobile}>перевод</span>
 				<InputWithError
 					name="valueTranslation"
 					value={state.valueTranslation}
@@ -93,6 +95,7 @@ const RedactWordFormField = ({
 				/>
 			</td>
 			<td className={styles.cell}>
+				<span className={styles.cell__mobile}>транскрипция</span>
 				<InputWithError
 					name="valueTranscription"
 					value={state.valueTranscription}
@@ -102,6 +105,7 @@ const RedactWordFormField = ({
 				/>
 			</td>
 			<td className={styles.cell}>
+				<span className={styles.cell__mobile}>тема</span>
 				<InputWithError
 					name="valueTopic"
 					value={state.valueTopic}

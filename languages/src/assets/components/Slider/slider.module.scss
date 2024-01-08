@@ -1,18 +1,20 @@
 @import "../../styles/variables.scss";
 
 .container {
+	box-sizing: border-box;
 	height: 100%;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding-top: 8vh;
 	.slider {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		height: 350px;
+		height: 60vh;
 		width: 100%;
 		&__learn {
 			font-family: $font_regular;
@@ -35,18 +37,19 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				margin-top: 135px;
+				margin-top: 27vh;
 				&:hover {
 					background-color: $color_purple_dark;
 				}
 			}
 		}
 		&__count {
+			box-sizing: border-box;
 			font-family: $font_regular;
 			font-weight: 600;
 			color: $color_brown;
 			font-size: $font_size_regular;
-			margin-top: 130px;
+			padding-top: 35vh;
 		}
 	}
 }
@@ -78,5 +81,36 @@
 	100% {
 		opacity: 0;
 		transform: translateX(-150%);
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.container {
+		.slider {
+			height: 70%;
+			&__learn {
+				top: -7vh;
+			}
+			&__main {
+				.button {
+					margin-top: 70vh;
+				}
+			}
+			&__count {
+				padding-top: 0;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.container {
+		.slider {
+			&__main {
+				.button {
+					margin: 27vh 35% 0 35%;
+				}
+			}
+		}
 	}
 }

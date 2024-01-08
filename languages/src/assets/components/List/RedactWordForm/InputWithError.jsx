@@ -13,7 +13,7 @@ const InputWithError = ({ name, value, onChange, error, errorMessage }) => {
 				value={value}
 				onChange={onChange}
 			/>
-			{error && <span className={styles.textError}>{errorMessage}</span>}
+			{error && <span className={styles.errorText}>{errorMessage}</span>}
 		</>
 	);
 };

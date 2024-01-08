@@ -2,8 +2,8 @@
 
 .card {
 	box-sizing: border-box;
-	width: 13rem;
-	height: 300px;
+	width: 20rem;
+	height: 50vh;
 	border: 1px solid $color_green_dark;
 	border-radius: 5px;
 	background-color: $color_green_light;
@@ -49,6 +49,40 @@
 		.check__text {
 			font-size: $font_size_big;
 			cursor: pointer;
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.card {
+		height: 50vh;
+		width: 80vw;
+		top: 0;
+		&__main {
+			margin-top: 7rem;
+			.main__word {
+				font-size: 3rem;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.card {
+		width: 60vw;
+		&__main {
+			margin-top: 10rem;
+			.main__word {
+				font-size: 4rem;
+			}
+			.main__transcription {
+				font-size: 1.5rem;
+			}
+		}
+		&__check {
+			.check__button {
+				font-size: $font_regular;
+			}
 		}
 	}
 }

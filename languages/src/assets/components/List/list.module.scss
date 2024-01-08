@@ -41,7 +41,7 @@ thead {
 	caption {
 		text-align: center;
 		font-size: $font_size_biggest;
-		padding: 5px;
+		//padding: 5px;
 		font-weight: 700;
 		margin-bottom: 5px;
 	}
@@ -82,7 +82,7 @@ thead {
 	}
 }
 
-.firstRow {
+.addButtonContainer {
 	display: flex;
 	justify-content: center;
 	.addButton {
@@ -114,7 +114,7 @@ thead {
 	}
 }
 
-.textError {
+.errorText {
 	color: $color_pink_dark;
 }
 
@@ -123,7 +123,6 @@ thead {
 		display: none;
 	}
 	tr {
-		border-bottom: 0;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
@@ -139,27 +138,24 @@ thead {
 		display: block;
 	}
 	.cell:not(.first) {
-		width: 33%;
-		height: 25px;
+		width: 35%;
+		height: auto;
 	}
 	.first {
 		display: none;
 	}
 	.list {
-		margin-left: 10px;
-		width: 98%;
+		.cell__input {
+			padding: 3px;
+		}
 		.buttons {
 			box-sizing: border-box;
-			//width: 100%;
-			//height: 139px;
-			//padding: 0.8rem 1rem;
-			//margin-top: -69px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-evenly;
 			gap: 5px;
-			//margin-bottom: 20px;
+			height: 100%;
 			.button {
 				width: 3.5rem;
 				height: 3.5rem;
@@ -167,8 +163,28 @@ thead {
 		}
 	}
 	.row td:last-child {
-		height: 94px;
-		//padding: 0.8rem 1rem;
-		margin-top: -69px;
+		height: auto;
+		flex: 1;
+		margin-top: -64px;
+		padding-top: 10px;
+	}
+	.addButtonRow {
+		height: 20px;
+		margin-bottom: 35px;
+		td {
+			border: none;
+			padding: 0;
+			.addButtonContainer {
+				width: 100vw;
+				.addButton {
+					width: 2.5rem;
+					height: 2.5rem;
+				}
+			}
+		}
+	}
+	.errorText {
+		display: block;
+		font-size: $font_size_small;
 	}
 }
