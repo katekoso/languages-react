@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/languages-react/static/css/main.220aa7be.css",
+    "main.js": "/languages-react/static/js/main.66401bcc.js",
+    "static/js/529.6185b1c7.chunk.js": "/languages-react/static/js/529.6185b1c7.chunk.js",
+    "static/media/Bajkal.ttf": "/languages-react/static/media/Bajkal.f33b8a319fdf7d281bb4.ttf",
+    "static/media/redact.svg": "/languages-react/static/media/redact.36044e9cf454c68d93c7356449294a73.svg",
+    "static/media/del.svg": "/languages-react/static/media/del.f3ed937c6b1b84f24292352b06a0edc8.svg",
+    "static/media/cancel.svg": "/languages-react/static/media/cancel.289694b2ba22d14fc89b920671ebadc9.svg",
+    "static/media/nextArr.svg": "/languages-react/static/media/nextArr.880c1099acfd0614bd4fc910857fe025.svg",
+    "static/media/prevArr.svg": "/languages-react/static/media/prevArr.4ffa75a0ee9486af739498affd6bd0c0.svg",
+    "static/media/save.svg": "/languages-react/static/media/save.a86b2731fe19ec7bcda2702a7a20a383.svg",
+    "index.html": "/languages-react/index.html",
+    "main.220aa7be.css.map": "/languages-react/static/css/main.220aa7be.css.map",
+    "main.66401bcc.js.map": "/languages-react/static/js/main.66401bcc.js.map",
+    "529.6185b1c7.chunk.js.map": "/languages-react/static/js/529.6185b1c7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.220aa7be.css",
+    "static/js/main.66401bcc.js"
+  ]
+}
