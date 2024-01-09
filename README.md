@@ -1,7 +1,9 @@
-Personal project 
-An app for learning english words using flashcards
+<p>Personal project</p> 
+<p>An app for learning english words using flashcards</p>
 
-Stack:
-React
-MobX
-Scss
+<p>Stack:</p>
+<ul>
+ <li>React</li>
+ <li>MobX</li>
+ <li>Scss</li>
+</ul>
