@@ -1,0 +1,88 @@
+@import "../../../styles/variables.scss";
+
+.card {
+	box-sizing: border-box;
+	width: 20rem;
+	height: 50vh;
+	border: 1px solid $color_green_dark;
+	border-radius: 5px;
+	background-color: $color_green_light;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	color: $color_brown;
+	font-family: $font_regular;
+	position: absolute;
+	top: 20px;
+	&__main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 110px;
+		.main__word {
+			font-size: $font_size_biggest;
+		}
+		.main__transcription {
+			color: $color_green_dark;
+		}
+	}
+	&__check {
+		margin-bottom: 35px;
+		.check__button {
+			border-radius: 15px;
+			border: none;
+			background-color: $color_green_dark;
+			padding: 9px;
+			color: $color_pink_light;
+			font-family: $font_regular;
+			font-size: $font_size_small;
+			font-weight: 600;
+			cursor: pointer;
+			&:hover {
+				background-color: $color_brown;
+			}
+			&:focus {
+				border: 1px solid $color_pink_light;
+			}
+		}
+		.check__text {
+			font-size: $font_size_big;
+			cursor: pointer;
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.card {
+		height: 50vh;
+		width: 80vw;
+		top: 0;
+		&__main {
+			margin-top: 7rem;
+			.main__word {
+				font-size: 3rem;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.card {
+		width: 60vw;
+		&__main {
+			margin-top: 10rem;
+			.main__word {
+				font-size: 4rem;
+			}
+			.main__transcription {
+				font-size: 1.5rem;
+			}
+		}
+		&__check {
+			.check__button {
+				font-size: $font_regular;
+			}
+		}
+	}
+}

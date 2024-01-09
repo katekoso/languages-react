@@ -1,0 +1,47 @@
+@import "../../styles/variables.scss";
+
+.error {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	&__code {
+		font-size: 15rem;
+		margin: 0;
+		color: $color_purple_dark;
+	}
+	&__explanation {
+		font-size: $font_size_big;
+	}
+	&__btn {
+		border-radius: 15px;
+		border: none;
+		background-color: $color_green_dark;
+		padding: 9px;
+		color: $color_pink_light;
+		font-family: $font_regular;
+		font-size: $font_size_small;
+		font-weight: 600;
+		cursor: pointer;
+		&:hover {
+			background-color: $color_brown;
+		}
+		.btn__link {
+			text-decoration: none;
+			color: $color_pink_light;
+		}
+	}
+}
+
+.error__code,
+.error__message,
+.error__explanation,
+.error__btn {
+	font-family: $font_regular;
+}
+
+.error__message,
+.error__explanation {
+	color: $color_brown;
+}

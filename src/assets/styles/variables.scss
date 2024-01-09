@@ -1,0 +1,21 @@
+$color_purple: rgb(109, 90, 171);
+$color_purple_dark: rgb(63, 50, 106);
+$color_green_light: rgb(189, 215, 194);
+$color_green: rgb(138, 188, 148);
+$color_green_dark: rgb(60, 104, 68);
+$color_brown: rgb(51, 38, 29);
+$color_pink_light: rgb(254, 243, 249);
+$color_pink: rgb(211, 95, 153);
+$color_pink_dark: rgb(176, 48, 112);
+
+@font-face {
+	font-family: "Bajcal", serif;
+	src: url(../fonts/Bajkal.ttf);
+}
+
+$font_regular: "Bajcal", serif;
+
+$font_size_biggest: 2.5rem;
+$font_size_big: 1.3rem;
+$font_size_regular: 1.1rem;
+$font_size_small: 0.9rem;
