@@ -10,7 +10,7 @@ class WordsStore {
 	}
 
 	loadWords = () => {
-		return fetch("http://itgirlschool.justmakeit.ru/api/words")
+		return fetch("/api/words")
 			.then((response) => {
 				if (response.ok) {
 					return response.json();
