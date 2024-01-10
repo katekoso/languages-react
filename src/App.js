@@ -36,7 +36,7 @@ const App = inject(['WordsStore'])(observer(({ WordsStore }) => {
       <main className={styles.main}>
         <Routes>
           <Route path="/languages-react/game" element={<Slider words={WordsStore.words} isLoading={WordsStore.isLoading}/>} />
-          <Route path="/languages-react" element={<List words={WordsStore.words}/>} />
+          <Route exact path="/languages-react" element={<List words={WordsStore.words}/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </main>
