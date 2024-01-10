@@ -21,22 +21,22 @@ const App = inject(['WordsStore'])(observer(({ WordsStore }) => {
   return (
     <Router>
       <header className={styles.header}>
-        <Link to="/"><img src={logo} className={styles.header__logo} alt="Логотип"/></Link>
+        <Link to="/languages-react"><img src={logo} className={styles.header__logo} alt="Логотип"/></Link>
         <nav>
           <ul>
             <li>
-              <Link to="/" className={styles.nav__item}>Главная</Link>
+              <Link to="/languages-react" className={styles.nav__item}>Главная</Link>
             </li>
             <li>
-              <Link to="/game" className={styles.nav__item}>Карточки</Link>
+              <Link to="/languages-react/game" className={styles.nav__item}>Карточки</Link>
             </li>
           </ul>
         </nav>
       </header>
       <main className={styles.main}>
         <Routes>
-          <Route path="/game" element={<Slider words={WordsStore.words} isLoading={WordsStore.isLoading}/>} />
-          <Route exact path="/" element={<List words={WordsStore.words}/>} />
+          <Route path="/languages-react/game" element={<Slider words={WordsStore.words} isLoading={WordsStore.isLoading}/>} />
+          <Route exact path="/languages-react" element={<List words={WordsStore.words}/>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </main>

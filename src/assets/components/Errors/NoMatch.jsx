@@ -13,15 +13,15 @@ const NoMatch = () => {
 				Неправильно набран адрес, или страница удалена
 			</p>
 			<button className={styles.error__btn}>
-				<Link to="/" className={styles.btn__link}>
+				<Link to="/languages-react" className={styles.btn__link}>
 					На главную
 				</Link>
 			</button>
 			<Routes>
-				<Route exact path="/" element={<List />} />
+				<Route exact path="/languages-react" element={<List />} />
 			</Routes>
 		</div>
 	);
-}
+};
 
 export default NoMatch;
