@@ -18,7 +18,7 @@ const NoMatch = () => {
 				</Link>
 			</button>
 			<Routes>
-				<Route exact path="/languages-react" element={<List />} />
+				<Route path="/languages-react" element={<List />} />
 			</Routes>
 		</div>
 	);
